@@ -1,0 +1,33 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        # Проверяю длинну списка. Если длинна списка меньше 3,
+        # возвращаю пустой список, т.к. не удовлетворяет условиям
+       	if len(nums) < 3:
+            return []
+        else:
+            triplets = [] # создаю список для сбора триплетов
+            for x in range(len(nums)):
+                for y in range(x + 1, len(nums)): # стартую каждую следующую цифру с индексом на 1 больше, чем предыдущую
+                    for z in range(y + 1, len(nums)): # см. предыдущий комментарий
+                        sum = nums[x] + nums[y] + nums[z]  # проверяем, равна ли сумма цифр 0
+                        if sum == 0:
+                            if [nums[x], nums[y], nums[z]] not in triplets: # проверяю, чтобы такого же триплета не было в 
+                                                                            # в списке. Это не избавляет от дублей
+                                triplets.append([nums[x], nums[y], nums[z]])  
+                            else:
+                                continue
+        # Сортирую каждый триплет в списке и добавляю его в новый список   
+        sorted_triplets = []
+
+        for i in range(len(triplets)):
+            sorted_triplets.append(sorted(triplets[i]))
+        
+        sorted_triplets.sort(reverse=False)  # Здесь сортирую сам список из триплетов
+       
+        # убираю дубли из списка триплетов
+        resulted_list = []
+        for i in range(len(sorted_triplets)):
+            if sorted_triplets[i] not in resulted_list:
+                resulted_list.append(sorted_triplets[i])
+
+        return resulted_list
