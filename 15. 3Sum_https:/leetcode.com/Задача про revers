@@ -1,0 +1,24 @@
+
+def reverse(x: int) -> int:
+    """
+    Given a signed 32-bit integer x, return x with its digits reversed.
+    If reversing x causes the value to go outside the signed 32-bit integer
+    range [-231, 231 - 1], then return 0.
+    :param x:
+    :type x:
+    :return:
+    :rtype:
+    """
+    x_str = str(abs(x))
+    reversed_x = x_str[::-1]
+    if int(reversed_x) > 2147483648:
+        return 0
+    else:
+        if x > 0:
+            return int(reversed_x)
+        else:
+            return -1 * int(reversed_x)
+
+
+if __name__ == "__main__":
+    reverse(1534236469)
